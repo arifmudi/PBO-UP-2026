@@ -8,6 +8,7 @@ Prodi Teknik Informatika, Fakultas Teknik, Universitas Pahlawan Tuanku Tambusai 
 ```text
 P01/
 ├── materi/                     dari dosen — JANGAN diubah
+│   ├── Panduan-Praktikum-P01.pdf  langkah praktikum dan TUGAS (lihat bagian 6)
 │   ├── LKM-P01.pdf             Lembar Kerja Mahasiswa (dicetak/diisi saat praktikum)
 │   ├── README.md               langkah praktikum dan tiga gerbang
 │   ├── periksa_pbo.py
