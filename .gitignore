@@ -40,6 +40,8 @@ desktop.ini
 # PBO-UP-2026-dosen. Pengaman bila tidak sengaja tersalin ke materi.
 /P*/materi/src/
 /P*/materi/tests/
+/P*-Kode-Acuan/*/src/
+/P*-Kode-Acuan/*/tests/
 
 # Rekap nilai dosen (rahasia, tidak boleh dikirim ke mahasiswa)
 Nilai-*.xlsx
