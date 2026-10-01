@@ -5,7 +5,8 @@ Saya menggunakan ChatGPT sebagai bantuan dalam pengerjaan dan perbaikan tugas P0
 Bantuan AI digunakan untuk:
 - memahami instruksi praktikum;
 - membantu memeriksa dan memperbaiki struktur kode;
-- membantu memahami pesan/error dari Git, Ruff, dan pengujian;
-- membantu proses perbaikan berdasarkan komentar dosen.
+- membantu memahami pesan atau error dari Git, Ruff, dan pengujian;
+- membantu menyusun ulang REFLEKSI.md berdasarkan hasil wawancara yang saya lakukan sendiri di apotek;
+- membantu memperbaiki penulisan agar isi refleksi lebih jelas dan terstruktur.
 
-Keputusan akhir mengenai kode dan hasil tugas tetap dilakukan oleh saya.
+Informasi mengenai kondisi apotek dan hasil wawancara berasal dari pengamatan dan wawancara yang saya lakukan sendiri. Keputusan akhir mengenai isi tugas tetap dilakukan oleh saya.
