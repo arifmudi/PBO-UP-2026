@@ -22,6 +22,7 @@ P01/
         ├── periksa_pbo.py      salinan dari materi, tidak diubah
         ├── pyproject.toml      salinan dari materi, tidak diubah
         ├── REFLEKSI.md
+        ├── LKM-P01.pdf         LKM yang sudah diisi (diunggah dosen)
         └── AI_USAGE.md         WAJIB, termasuk bila tidak memakai AI
 P02/
 └── ...
