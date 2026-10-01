@@ -41,3 +41,7 @@ desktop.ini
 # pyproject.toml, AI_USAGE.md, .gitignore.
 /P*-Kode-Acuan/*/src/
 /P*-Kode-Acuan/*/tests/
+
+# Rekap nilai dosen (rahasia, tidak boleh dikirim ke mahasiswa)
+Nilai-*.xlsx
+~$*.xlsx
