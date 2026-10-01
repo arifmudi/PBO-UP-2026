@@ -1,0 +1,9 @@
+# Mengapa PBO diperlukan pada Toko Bahan Kue dan Plastik
+
+Saya memilih toko bahan kue dan plastik sebagai studi kasus karena usaha ini sudah berdiri sejak tahun 2000. Berdasarkan hasil wawancara, usaha ini masih dijalankan oleh owner dan karyawan. Sistem pencatatan penjualan dan pembukuannya masih dilakukan secara manual. Untuk pencatatan melalui komputer, mereka belum menggunakannya karena menurut mereka prosesnya lebih lama. Mereka lebih memilih mencatat atau mengirim informasi langsung melalui grup WhatsApp karena dianggap lebih cepat dan praktis.
+
+Menurut saya, cara tersebut memang lebih mudah untuk dilakukan dalam kegiatan sehari-hari, tetapi masih memiliki beberapa kendala. Salah satunya adalah pencatatan dan pembukuan yang masih manual sehingga data usaha belum tersusun dalam satu sistem yang terstruktur. Selain itu, usaha ini juga menghadapi persaingan dengan usaha lain serta harga barang yang sering naik dan turun. Kondisi tersebut membuat pengelolaan data barang dan penjualan menjadi hal yang cukup penting.
+
+Konsep PBO dapat membantu jika nantinya dibuat sebuah sistem untuk mengelola data usaha tersebut. Beberapa bagian dapat dimodelkan menjadi objek, misalnya Barang yang memiliki nama, harga, dan stok; Penjualan yang memiliki tanggal, jumlah barang, dan total pembayaran; serta Karyawan yang memiliki nama dan tugas. Dengan begitu, data yang sebelumnya dicatat secara manual atau disampaikan melalui WhatsApp dapat dibuat lebih terstruktur.
+
+Dari studi kasus ini, saya memahami bahwa PBO tidak hanya digunakan untuk membuat program, tetapi juga dapat digunakan untuk menggambarkan masalah yang ada di dunia nyata. Dengan memodelkan barang, penjualan, dan karyawan sebagai objek, sistem yang dibuat nantinya dapat membantu mengelola data usaha dengan lebih teratur tanpa menghilangkan kebutuhan akan proses yang praktis dan mudah digunakan.
