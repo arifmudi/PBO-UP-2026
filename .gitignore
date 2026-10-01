@@ -36,11 +36,10 @@ dist/
 Thumbs.db
 desktop.ini
 
-# Kunci jawaban dosen pada kode acuan (tidak boleh dikirim ke mahasiswa).
-# Yang tetap dikirim: README.md, salah_prosedural.py, periksa_pbo.py,
-# pyproject.toml, AI_USAGE.md, .gitignore.
-/P*-Kode-Acuan/*/src/
-/P*-Kode-Acuan/*/tests/
+# Kunci jawaban dosen (src/ dan tests/) disimpan di repo privat
+# PBO-UP-2026-dosen. Pengaman bila tidak sengaja tersalin ke materi.
+/P*/materi/src/
+/P*/materi/tests/
 
 # Rekap nilai dosen (rahasia, tidak boleh dikirim ke mahasiswa)
 Nilai-*.xlsx

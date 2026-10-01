@@ -1,0 +1,115 @@
+name: Periksa Tugas
+
+# Dijalankan pada setiap Pull Request mahasiswa ke main.
+# Memeriksa lokasi dan nama folder, keaslian berkas dosen, tiga gerbang,
+# dan kelengkapan REFLEKSI.md serta AI_USAGE.md.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  periksa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil kode
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lokasi dan nama folder
+        id: lokasi
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git diff --name-only "$BASE" HEAD > berubah.txt
+          echo "Berkas yang diubah PR ini:"; cat berubah.txt
+          LUAR=$(grep -vE '^P[0-9]{2}/tugas/[^/]+/' berubah.txt || true)
+          if [ -n "$LUAR" ]; then
+            echo "::error::PR ini mengubah berkas di luar folder tugas. Hanya boleh mengubah P0x/tugas/NAMA_LENGKAP-NIM/:"
+            echo "$LUAR"; exit 1
+          fi
+          FOLDER=$(grep -oE '^P[0-9]{2}/tugas/[^/]+' berubah.txt | sort -u)
+          if [ "$(printf '%s\n' "$FOLDER" | grep -c .)" -ne 1 ]; then
+            echo "::error::Satu PR hanya boleh berisi satu folder tugas. Ditemukan:"
+            echo "$FOLDER"; exit 1
+          fi
+          NAMA=$(basename "$FOLDER")
+          if ! echo "$NAMA" | grep -qE '^[A-Z]+(_[A-Z]+)*-[0-9]{10}$'; then
+            echo "::error::Nama folder '$NAMA' tidak sesuai. Gunakan NAMA_LENGKAP-NIM: huruf kapital, dipisah garis bawah, tanpa titik. Contoh: BUDI_SANTOSO-2555201000"
+            exit 1
+          fi
+          P=$(echo "$FOLDER" | cut -d/ -f1)
+          if [ "$P" = "P01" ]; then PROFIL=dasar; else PROFIL=$(echo "$P" | tr 'P' 'p'); fi
+          echo "folder=$FOLDER" >> "$GITHUB_OUTPUT"
+          echo "materi=$P/materi" >> "$GITHUB_OUTPUT"
+          echo "profil=$PROFIL" >> "$GITHUB_OUTPUT"
+          echo "Folder: $FOLDER | profil periksa_pbo: $PROFIL"
+
+      - name: Berkas dosen tidak diubah
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        env:
+          FOLDER: ${{ steps.lokasi.outputs.folder }}
+          MATERI: ${{ steps.lokasi.outputs.materi }}
+        run: |
+          GAGAL=0
+          for f in periksa_pbo.py pyproject.toml; do
+            if [ ! -f "$FOLDER/$f" ]; then
+              echo "::error::$f tidak ada. Salin dari $MATERI/ tanpa diubah."; GAGAL=1
+            elif ! diff -q -B --strip-trailing-cr "$MATERI/$f" "$FOLDER/$f" > /dev/null; then
+              echo "::error::$f berbeda dari $MATERI/$f. Salin ulang tanpa diubah."; GAGAL=1
+            fi
+          done
+          exit $GAGAL
+
+      - name: Siapkan Python
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Pasang alat pemeriksa
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        run: pip install pytest mypy ruff
+
+      - name: "Gerbang 1: periksa_pbo.py"
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        working-directory: ${{ steps.lokasi.outputs.folder }}
+        env:
+          MATERI: ${{ github.workspace }}/${{ steps.lokasi.outputs.materi }}
+          PROFIL: ${{ steps.lokasi.outputs.profil }}
+        run: python "$MATERI/periksa_pbo.py" src --profil "$PROFIL"
+
+      - name: "Gerbang 2: mypy"
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        working-directory: ${{ steps.lokasi.outputs.folder }}
+        run: python -m mypy
+
+      - name: "Gerbang 3: pytest"
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        working-directory: ${{ steps.lokasi.outputs.folder }}
+        run: python -m pytest
+
+      - name: Program berjalan
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        working-directory: ${{ steps.lokasi.outputs.folder }}
+        run: python -m src.main
+
+      - name: REFLEKSI.md dan AI_USAGE.md
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        working-directory: ${{ steps.lokasi.outputs.folder }}
+        run: |
+          GAGAL=0
+          for f in REFLEKSI.md AI_USAGE.md; do
+            if [ ! -s "$f" ]; then echo "::error::$f belum ada atau kosong."; GAGAL=1; fi
+          done
+          exit $GAGAL
+
+      - name: Kerapian kode (ruff, informasi saja)
+        if: ${{ !cancelled() && steps.lokasi.outcome == 'success' }}
+        continue-on-error: true
+        working-directory: ${{ steps.lokasi.outputs.folder }}
+        run: python -m ruff check src tests
