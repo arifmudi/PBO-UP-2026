@@ -1,13 +1,27 @@
-# PBO-UP-2026
+# PBO-UP-2026 — Kelas A
 
 Praktikum Pemrograman Berorientasi Objek
 Prodi Teknik Informatika, Fakultas Teknik, Universitas Pahlawan Tuanku Tambusai — 2026/2027
+
+## Jadwal dan tenggat
+
+Setiap tugas berjalan **1 minggu** sejak LKM dibagikan.
+
+| Tugas | Mulai | Tenggat (Pull Request sudah dibuat) |
+|---|---|---|
+| P01 — Lingkungan kerja dan tiga gerbang | Kamis, 24 September 2026 | Rabu, 30 September 2026, pukul 23.59 WIB (sudah lewat) |
+| P02 — Kelas `Penyewa` dan `AlatTani` | Kamis, 1 Oktober 2026 | **Rabu, 7 Oktober 2026, pukul 23.59 WIB** |
+
+Keterlambatan dihitung dari **waktu Pull Request dibuat** (dicatat GitHub) dan dikurangi
+**5 poin per hari**. Commit di fork saja belum dihitung mengumpulkan — buat PR-nya sebelum tenggat.
 
 ## Struktur repo
 
 ```text
 P01/
 ├── materi/                     dari dosen — JANGAN diubah
+│   ├── Panduan-Praktikum-P01.pdf  langkah praktikum dan TUGAS (lihat bagian 6)
+│   ├── LKM-P01.pdf             Lembar Kerja Mahasiswa (dicetak/diisi saat praktikum)
 │   ├── README.md               langkah praktikum dan tiga gerbang
 │   ├── periksa_pbo.py
 │   ├── pyproject.toml
@@ -20,6 +34,7 @@ P01/
         ├── periksa_pbo.py      salinan dari materi, tidak diubah
         ├── pyproject.toml      salinan dari materi, tidak diubah
         ├── REFLEKSI.md
+        ├── LKM-P01.pdf         LKM yang sudah diisi (diunggah dosen)
         └── AI_USAGE.md         WAJIB, termasuk bila tidak memakai AI
 P02/
 └── ...
