@@ -1,0 +1,17 @@
+from src.model.alat_tani import AlatTani
+
+
+def test_biaya_sewa() -> None:
+    alat = AlatTani("TR-01", "Traktor", 150000)
+    assert alat.biaya_sewa(2) == 300000
+
+
+def test_keterangan() -> None:
+    alat = AlatTani("TR-01", "Traktor", 150000)
+    assert alat.keterangan() == "[TR-01] Traktor — Rp150.000/hari"
+
+
+def test_dua_objek_punya_data_sendiri() -> None:
+    a = AlatTani("TR-01", "Traktor", 150000)
+    b = AlatTani("PA-01", "Pompa", 75000)
+    assert a.biaya_sewa(1) != b.biaya_sewa(1)
