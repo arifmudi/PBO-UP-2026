@@ -1,6 +1,5 @@
-
 class Petugas:
-    """Identitas dan informasi petugas UPJA."""
+    """Menyimpan data dan mengelola informasi petugas UPJA."""
 
     def __init__(
         self,
@@ -14,8 +13,20 @@ class Petugas:
         self._jabatan = jabatan
         self._telepon = telepon
 
+    def get_nip(self) -> str:
+        """Mengembalikan NIP petugas."""
+        return self._nip
+
+    def get_nama(self) -> str:
+        """Mengembalikan nama petugas."""
+        return self._nama
+
+    def get_jabatan(self) -> str:
+        """Mengembalikan jabatan petugas."""
+        return self._jabatan
+
     def identitas(self) -> str:
-        """Mengembalikan identitas singkat petugas."""
+        """Mengembalikan identitas petugas."""
         return f"{self._nama} ({self._nip}) - {self._jabatan}"
 
     def kontak(self) -> str:
@@ -25,6 +36,5 @@ class Petugas:
         return f"{self._nama} dapat dihubungi di {self._telepon}"
 
     def informasi(self) -> str:
-        """Mengembalikan informasi lengkap petugas."""
+        """Mengembalikan seluruh informasi petugas."""
         return f"{self.identitas()} | {self.kontak()}"
-
