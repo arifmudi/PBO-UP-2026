@@ -1,40 +1,39 @@
 class Petugas:
-    """Menyimpan data dan mengelola informasi petugas UPJA."""
+    """Mengelola tugas petugas dalam pelayanan penyewaan alat UPJA."""
 
     def __init__(
         self,
-        nip: str,
         nama: str,
         jabatan: str,
-        telepon: str = "-",
+        status_bertugas: bool = False,
     ) -> None:
-        self._nip = nip
         self._nama = nama
         self._jabatan = jabatan
-        self._telepon = telepon
+        self._status_bertugas = status_bertugas
+        self._jumlah_penyewaan = 0
 
-    def get_nip(self) -> str:
-        """Mengembalikan NIP petugas."""
-        return self._nip
+    def mulai_bertugas(self) -> str:
+        """Mengaktifkan status pelayanan petugas."""
+        self._status_bertugas = True
+        return f"{self._nama} mulai bertugas melayani penyewaan"
 
-    def get_nama(self) -> str:
-        """Mengembalikan nama petugas."""
-        return self._nama
+    def selesai_bertugas(self) -> str:
+        """Mengakhiri status pelayanan petugas."""
+        self._status_bertugas = False
+        return f"{self._nama} selesai bertugas"
 
-    def get_jabatan(self) -> str:
-        """Mengembalikan jabatan petugas."""
-        return self._jabatan
+    def layani_penyewaan(self) -> str:
+        """Mencatat pelayanan penyewaan alat."""
+        if not self._status_bertugas:
+            return f"{self._nama} belum mulai bertugas"
 
-    def identitas(self) -> str:
-        """Mengembalikan identitas petugas."""
-        return f"{self._nama} ({self._nip}) - {self._jabatan}"
+        self._jumlah_penyewaan += 1
+        return f"{self._nama} telah melayani penyewaan"
 
-    def kontak(self) -> str:
-        """Mengembalikan informasi kontak petugas."""
-        if self._telepon == "-":
-            return f"{self._nama} belum mencantumkan nomor telepon"
-        return f"{self._nama} dapat dihubungi di {self._telepon}"
-
-    def informasi(self) -> str:
-        """Mengembalikan seluruh informasi petugas."""
-        return f"{self.identitas()} | {self.kontak()}"
+    def ringkasan_tugas(self) -> str:
+        """Menampilkan ringkasan pekerjaan petugas."""
+        status = "Sedang bertugas" if self._status_bertugas else "Tidak bertugas"
+        return (
+            f"Nama: {self._nama} | Jabatan: {self._jabatan} | "
+            f"Status: {status} | Penyewaan dilayani: {self._jumlah_penyewaan}"
+        )

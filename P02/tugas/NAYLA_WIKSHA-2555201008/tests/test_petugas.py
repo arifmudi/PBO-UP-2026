@@ -1,49 +1,67 @@
 from src.model.petugas import Petugas
 
 
-def test_data_petugas() -> None:
-    petugas = Petugas("PTG001", "Budi", "Pengurus UPJA")
+def test_petugas_awalnya_tidak_bertugas() -> None:
+    petugas = Petugas("Budi", "Pengurus UPJA")
 
-    assert petugas.get_nip() == "PTG001"
-    assert petugas.get_nama() == "Budi"
-    assert petugas.get_jabatan() == "Pengurus UPJA"
+    assert "Tidak bertugas" in petugas.ringkasan_tugas()
 
 
-def test_identitas_petugas() -> None:
-    petugas = Petugas("PTG001", "Budi", "Pengurus UPJA")
+def test_mulai_bertugas() -> None:
+    petugas = Petugas("Budi", "Pengurus UPJA")
 
-    assert petugas.identitas() == "Budi (PTG001) - Pengurus UPJA"
+    hasil = petugas.mulai_bertugas()
 
-
-def test_kontak_petugas() -> None:
-    petugas = Petugas(
-        "PTG001",
-        "Budi",
-        "Pengurus UPJA",
-        "08123456789",
-    )
-
-    assert petugas.kontak() == "Budi dapat dihubungi di 08123456789"
+    assert hasil == "Budi mulai bertugas melayani penyewaan"
+    assert "Sedang bertugas" in petugas.ringkasan_tugas()
 
 
-def test_kontak_petugas_tanpa_nomor() -> None:
-    petugas = Petugas("PTG002", "Siti", "Administrasi")
+def test_petugas_melayani_penyewaan() -> None:
+    petugas = Petugas("Budi", "Pengurus UPJA")
+    petugas.mulai_bertugas()
 
-    assert petugas.kontak() == "Siti belum mencantumkan nomor telepon"
+    hasil = petugas.layani_penyewaan()
 
-
-def test_informasi_petugas() -> None:
-    petugas = Petugas("PTG001", "Budi", "Pengurus UPJA", "08123456789")
-
-    assert petugas.informasi() == (
-        "Budi (PTG001) - Pengurus UPJA | "
-        "Budi dapat dihubungi di 08123456789"
-    )
+    assert hasil == "Budi telah melayani penyewaan"
+    assert "Penyewaan dilayani: 1" in petugas.ringkasan_tugas()
 
 
-def test_dua_petugas_punya_data_sendiri() -> None:
-    petugas_a = Petugas("PTG001", "Budi", "Pengurus UPJA")
-    petugas_b = Petugas("PTG002", "Siti", "Administrasi")
+def test_petugas_belum_bertugas_tidak_melayani() -> None:
+    petugas = Petugas("Siti", "Administrasi")
 
-    assert petugas_a.get_nama() != petugas_b.get_nama()
-    assert petugas_a.get_nip() != petugas_b.get_nip()
+    hasil = petugas.layani_penyewaan()
+
+    assert hasil == "Siti belum mulai bertugas"
+    assert "Penyewaan dilayani: 0" in petugas.ringkasan_tugas()
+
+
+def test_petugas_melayani_beberapa_penyewaan() -> None:
+    petugas = Petugas("Budi", "Pengurus UPJA")
+    petugas.mulai_bertugas()
+
+    petugas.layani_penyewaan()
+    petugas.layani_penyewaan()
+    petugas.layani_penyewaan()
+
+    assert "Penyewaan dilayani: 3" in petugas.ringkasan_tugas()
+
+
+def test_selesai_bertugas() -> None:
+    petugas = Petugas("Budi", "Pengurus UPJA")
+    petugas.mulai_bertugas()
+
+    hasil = petugas.selesai_bertugas()
+
+    assert hasil == "Budi selesai bertugas"
+    assert "Tidak bertugas" in petugas.ringkasan_tugas()
+
+
+def test_dua_petugas_memiliki_data_terpisah() -> None:
+    petugas_a = Petugas("Budi", "Pengurus UPJA")
+    petugas_b = Petugas("Siti", "Administrasi")
+
+    petugas_a.mulai_bertugas()
+    petugas_a.layani_penyewaan()
+
+    assert "Penyewaan dilayani: 1" in petugas_a.ringkasan_tugas()
+    assert "Penyewaan dilayani: 0" in petugas_b.ringkasan_tugas()
