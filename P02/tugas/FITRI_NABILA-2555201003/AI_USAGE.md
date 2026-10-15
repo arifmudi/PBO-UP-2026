@@ -4,4 +4,5 @@
 - Tidak menggunakan asisten AI.
 
 ## Pertemuan 2
-- Tidak menggunakan asisten AI.
+- Menggunakan asisten AI.
+- Menggunakan chat gpt untuk membuat kodingan petugas.py dan test_petugas.py
