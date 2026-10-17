@@ -1,19 +1,20 @@
-"""Model domain: petugas UPJA yang melayani penyewaan."""
-
+""" Model domain: petugas UPJA yang bertugas melayani penyewaan """
 
 class Petugas:
-    """"Petugas UPJA beserta tarif operasionalnya."""
+    """ Identitas petugas UPJA beserta gaji operasionalnya """
 
-    def __init__(self, id_petugas: str, nama: str, jabatan: str = "Operator", tarif_harian: int = 100000) -> None:
-        self._id_petugas = id_petugas
-        self._nama = nama
+    def __init__(self, nama_petugas: str, no_telepon: str, jabatan: str = "Admin", gaji_harian: int = 50000) -> None:
+        self._nama_petugas = nama_petugas
+        self._no_telepon = no_telepon
         self._jabatan = jabatan
-        self._tarif_harian = tarif_harian
+        self._gaji_harian = gaji_harian
 
-    def honor_petugas(self, jumlah_hari: int) -> int:
-        """"Menghitung total honor petugas berdasarkan jumlah hari kerja."""
-        return self._tarif_harian * jumlah_hari
+    def gaji_petugas(self, jumlah_hari: int) -> int:
+        return self._gaji_harian * jumlah_hari
 
-    def identitas(self) -> str:
-        """Mengembalikan baris identitas singkat petugas."""
-        return f"[{self._id_petugas}] {self._nama} ({self._jabatan})"
+    def tampilkan_identitas(self) -> str:
+        format_gaji = "Rp{:,}".format(self._gaji_harian).replace(",", ".")            
+        return f"{self._nama_petugas} ({self._jabatan}) nomor telepon: {self._no_telepon}, gaji harian: {format_gaji}"
+
+    def hubungi_petugas(self) -> str:
+        return f"{self._nama_petugas} - {self._no_telepon}"
