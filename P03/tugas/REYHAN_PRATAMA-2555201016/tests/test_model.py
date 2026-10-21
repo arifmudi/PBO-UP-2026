@@ -1,6 +1,7 @@
 
 import pytest
 from src.model.alamat import Alamat
+from src.model.alat_tani import AlatTani
 from src.model.penyewa import Penyewa
 
 
@@ -219,3 +220,18 @@ def test_penyewa_nama_tidak_bisa_diubah() -> None:
 
     with pytest.raises(AttributeError):
         penyewa.nama = "Siti Aminah"  # type: ignore[misc]
+
+
+def test_alat_tani_tarif_valid() -> None:
+    alat = AlatTani("TR-01", "Traktor", 150000)
+    assert alat.tarif_harian == 150000
+
+
+def test_alat_tani_tarif_nol_ditolak() -> None:
+    with pytest.raises(ValueError):
+        AlatTani("TR-01", "Traktor", 0)
+
+
+def test_alat_tani_tarif_negatif_ditolak() -> None:
+    with pytest.raises(ValueError):
+        AlatTani("TR-01", "Traktor", -1000)

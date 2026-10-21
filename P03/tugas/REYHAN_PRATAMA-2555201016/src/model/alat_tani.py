@@ -9,7 +9,8 @@ class AlatTani:
             raise ValueError("Nama tidak boleh kosong")
         self._kode = kode
         self._nama = nama
-        self._tarif_harian = tarif_harian
+        self._tarif_harian = 0
+        self.tarif_harian = tarif_harian
 
     @property
     def kode(self) -> str:
