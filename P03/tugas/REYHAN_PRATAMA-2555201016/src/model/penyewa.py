@@ -23,7 +23,7 @@ class Penyewa:
 
         self._nama = nama
         self._nik = nik
-        self._telepon = telepon
+        self.telepon = telepon
         self._alamat = alamat
 
     @property
