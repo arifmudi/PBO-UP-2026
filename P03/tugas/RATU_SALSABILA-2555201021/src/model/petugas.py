@@ -1,3 +1,4 @@
+
 """Model petugas yang mengelola penyewaan alat tani."""
 
 from dataclasses import dataclass
@@ -32,31 +33,30 @@ class Petugas:
         telepon: str = "-",
     ) -> None:
         self._identitas = IdentitasPetugas(id_petugas, nama, jabatan)
-        self._desa_tugas = desa_tugas
-        self._telepon = telepon
+        self.desa_tugas = desa_tugas
+        self.telepon = telepon
 
-        if not desa_tugas.strip():
-            raise ValueError("Desa tugas tidak boleh kosong.")
-        if not telepon.strip():
-            raise ValueError("Telepon tidak boleh kosong.")
-
+    # Property baca-saja untuk menjaga objek identitas tetap.
     @property
     def identitas_petugas(self) -> IdentitasPetugas:
-        """Mengembalikan identitas petugas yang tidak dapat diubah."""
         return self._identitas
 
+    # Property baca-saja untuk menjaga ID petugas tetap.
     @property
     def id_petugas(self) -> str:
         return self._identitas.id_petugas
 
+    # Property baca-saja untuk menjaga nama petugas tetap.
     @property
     def nama(self) -> str:
         return self._identitas.nama
 
+    # Property baca-saja untuk menjaga jabatan petugas tetap.
     @property
     def jabatan(self) -> str:
         return self._identitas.jabatan
 
+    # Property desa tugas agar nilainya dapat divalidasi.
     @property
     def desa_tugas(self) -> str:
         return self._desa_tugas
@@ -67,6 +67,7 @@ class Petugas:
             raise ValueError("Desa tugas tidak boleh kosong.")
         self._desa_tugas = desa
 
+    # Property telepon agar nilainya dapat divalidasi.
     @property
     def telepon(self) -> str:
         return self._telepon
@@ -79,7 +80,7 @@ class Petugas:
 
     def identitas(self) -> str:
         """Mengembalikan identitas petugas."""
-        return f"{self.nama} ({self.id_petugas}) — {self.jabatan}"
+        return f"{self.nama} ({self.id_petugas}) - {self.jabatan}"
 
     def wilayah_tugas(self) -> str:
         """Mengembalikan desa tempat petugas bertugas."""

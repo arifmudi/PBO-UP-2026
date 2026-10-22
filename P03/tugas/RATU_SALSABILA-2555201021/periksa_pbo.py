@@ -1,6 +1,6 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
-periksa_pbo.py ΓÇö Pemeriksa disiplin berorientasi objek untuk tugas Python.
+periksa_pbo.py — Pemeriksa disiplin berorientasi objek untuk tugas Python.
 
 Dipakai mahasiswa sebelum mengumpulkan, dan dipakai dosen saat menilai.
 Kode yang tidak lolos pemeriksa ini dinyatakan BELUM SELESAI, sebagaimana
@@ -13,7 +13,7 @@ Pemakaian:
 
 Kode keluar: 0 bila lolos, 1 bila ada pelanggaran.
 
-Prodi Teknik Informatika ΓÇö Universitas Pahlawan Tuanku Tambusai
+Prodi Teknik Informatika — Universitas Pahlawan Tuanku Tambusai
 """
 from __future__ import annotations
 
