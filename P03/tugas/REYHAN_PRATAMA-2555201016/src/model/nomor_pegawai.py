@@ -1,4 +1,4 @@
-﻿"""Model nilai beku untuk nomor pegawai."""
+"""Model nilai beku untuk nomor pegawai."""
 
 from dataclasses import dataclass
 
