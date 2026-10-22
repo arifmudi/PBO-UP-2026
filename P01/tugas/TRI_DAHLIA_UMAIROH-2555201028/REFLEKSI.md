@@ -8,9 +8,9 @@ Saya memahami bahwa program yang awalnya dibuat secara prosedural dapat diubah m
 
 ## 2. Penerapan pada Kasus Nyata
 
-Konsep class dan object dapat diterapkan pada sistem informasi mahasiswa di lingkungan kampus. Setiap mahasiswa dapat direpresentasikan sebagai sebuah object yang memiliki data seperti nama, NIM, dan asal desa.
-
-Dengan pendekatan tersebut, data mahasiswa menjadi lebih terstruktur dan program dapat dikembangkan dengan lebih mudah apabila nantinya ditambahkan informasi seperti program studi, alamat, nilai, atau data akademik lainnya.
+Konsep class dan object dapat diterapkan pada sistem informasi penjualan dan pendataan reseller pada Alma Beauty Care di Riau. Sebelum menggunakan sistem, proses pencatatan penjualan dan data reseller masih dilakukan secara manual sehingga informasi transaksi dan data reseller belum terkelola secara terstruktur.
+Dalam proses tersebut terdapat beberapa persoalan, yaitu pencatatan data penjualan dan reseller membutuhkan waktu lebih lama serta data dapat sulit dicari kembali ketika dibutuhkan. Selain itu, pencatatan secara manual juga dapat menyebabkan kesalahan atau data yang tidak tercatat dengan baik.
+Dengan menggunakan pendekatan berorientasi objek, bagian-bagian dalam sistem dapat dimodelkan sebagai objek, seperti Reseller, Produk, dan Penjualan. Setiap objek memiliki data dan perilaku masing-masing sehingga proses pendataan reseller dan pencatatan penjualan dapat dibuat lebih terstruktur, mudah dikelola, dan dikembangkan menjadi sebuah sistem informasi.
 
 ## 3. Kesulitan yang Ditemui
 
