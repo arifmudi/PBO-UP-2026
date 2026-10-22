@@ -24,24 +24,28 @@ class Petugas:
         self._jabatan = jabatan
         self.telepon = telepon
 
+    # Hanya-baca agar ID petugas tidak berubah setelah objek dibuat.
     @property
     def id_petugas(self) -> str:
-        """ID petugas tidak boleh diubah setelah objek dibuat."""
+        """Mengembalikan ID petugas."""
         return self._id_petugas
 
+    # Hanya-baca agar perubahan nama dikendalikan melalui objek.
     @property
     def nama(self) -> str:
-        """Nama dibaca melalui properti agar atribut tetap terlindungi."""
+        """Mengembalikan nama petugas."""
         return self._nama
 
+    # Hanya-baca agar jabatan tidak diubah sembarangan.
     @property
     def jabatan(self) -> str:
-        """Jabatan dibaca melalui properti."""
+        """Mengembalikan jabatan petugas."""
         return self._jabatan
 
+    # Bisa dibaca dan diubah, tetapi setter memvalidasi nomor telepon.
     @property
     def telepon(self) -> str:
-        """Nomor telepon dibaca melalui properti."""
+        """Mengembalikan nomor telepon petugas."""
         return self._telepon
 
     @telepon.setter
