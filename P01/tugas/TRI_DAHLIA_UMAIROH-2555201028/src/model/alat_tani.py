@@ -1,19 +1,29 @@
-"""Model domain: alat yang disewakan UPJA."""
-
-
 class AlatTani:
     """Satu unit alat pertanian beserta tarif hariannya."""
 
     def __init__(self, kode: str, nama: str, tarif_harian: int) -> None:
         self._kode = kode
         self._nama = nama
-        self._tarif_harian = tarif_harian
+        self.tarif_harian = tarif_harian
 
-    def keterangan(self) -> str:
-        """Mengembalikan baris keterangan alat untuk daftar sewa."""
-        rupiah = f"{self._tarif_harian:,}".replace(",", ".")
-        return f"[{self._kode}] {self._nama} — Rp{rupiah}/hari"
+    @property
+    def kode(self) -> str:
+        """Kode alat. Tidak dapat diubah setelah alat dibuat."""
+        return self._kode
 
-    def biaya_sewa(self, jumlah_hari: int) -> int:
-        """Menghitung biaya sewa berdasarkan jumlah hari."""
-        return self._tarif_harian * jumlah_hari
+    @property
+    def nama(self) -> str:
+        """Nama alat. Tidak dapat diubah setelah alat dibuat."""
+        return self._nama
+
+    @property
+    def tarif_harian(self) -> int:
+        return self._tarif_harian
+
+    @tarif_harian.setter
+    def tarif_harian(self, nilai: int) -> None:
+        if nilai <= 0:
+            raise ValueError("Tarif harian harus lebih dari 0.")
+        if nilai > 5_000_000:
+            raise ValueError("Tarif harian tidak boleh lebih dari Rp5.000.000.")
+        self._tarif_harian = nilai

@@ -1,9 +1,21 @@
-from .mahasiswa import Mahasiswa
+from src.model.alamat import Alamat
+from src.model.penyewa import Penyewa
 
 
 def main() -> None:
-    mahasiswa = Mahasiswa("Budi Santoso", "2410123456", "Kuok")
-    print(mahasiswa.perkenalan())
+    alamat = Alamat(
+        dusun="Dusun I",
+        desa="Kuok",
+        kecamatan="Kuok",
+    )
+
+    penyewa = Penyewa(
+        nama="Budi Santoso",
+        nik="1234567890123456",
+        alamat=alamat,
+    )
+
+    print(penyewa.identitas())
 
 
 if __name__ == "__main__":
