@@ -1,7 +1,7 @@
 from src.model.petugas import Petugas
 
 
-def test_petugas_menyimpan_data():
+def test_petugas_menyimpan_data() -> None:
     petugas = Petugas(
         nama="Budi Santoso",
         id_petugas="PTG001",
@@ -15,7 +15,7 @@ def test_petugas_menyimpan_data():
     assert petugas.wilayah == "Kuok"
 
 
-def test_dua_petugas_menyimpan_data_masing_masing():
+def test_dua_petugas_menyimpan_data_masing_masing() -> None:
     petugas1 = Petugas(
         nama="Budi Santoso",
         id_petugas="PTG001",
@@ -34,7 +34,7 @@ def test_dua_petugas_menyimpan_data_masing_masing():
     assert petugas1.wilayah != petugas2.wilayah
 
 
-def test_petugas_aktif_dan_informasi():
+def test_petugas_aktif_dan_informasi() -> None:
     petugas = Petugas(
         nama="Budi Santoso",
         id_petugas="PTG001",
