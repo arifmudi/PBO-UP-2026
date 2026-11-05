@@ -18,7 +18,3 @@ addopts = "-ra -q"
 testpaths = [
     "tests",
 ]
-
-[tool.mypy]
-files = ["src"]
-explicit_package_bases = true
