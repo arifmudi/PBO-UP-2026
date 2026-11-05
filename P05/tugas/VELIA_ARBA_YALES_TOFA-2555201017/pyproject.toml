@@ -18,6 +18,3 @@ addopts = "-ra -q"
 testpaths = [
     "tests",
 ]
-
-[tool.mypy]
-files = ["src"]
