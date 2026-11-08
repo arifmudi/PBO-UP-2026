@@ -29,3 +29,29 @@ def test_penyewa_tetap_hidup_setelah_sewa_dihapus() -> None:
     sewa = Sewa("SW-001", budi)
     del sewa
     assert budi._nama == "Budi Santoso"
+
+def test_nomor_sewa_kosong_ditolak() -> None:
+    with pytest.raises(ValueError):
+        Sewa("", buat_penyewa())
+
+
+def test_alat_yang_sama_tidak_boleh_ditambahkan_dua_kali() -> None:
+    sewa = Sewa("SW-002", buat_penyewa())
+    alat = AlatTani("TR-01", "Traktor", 150_000)
+
+    sewa.tambah_alat(alat, 3)
+
+    with pytest.raises(ValueError):
+        sewa.tambah_alat(alat, 2)
+
+    assert len(sewa.baris) == 1
+
+
+def test_jumlah_hari_nol_ditolak() -> None:
+    sewa = Sewa("SW-003", buat_penyewa())
+    alat = AlatTani("TR-02", "Pompa Air", 75_000)
+
+    with pytest.raises(ValueError):
+        sewa.tambah_alat(alat, 0)
+
+    assert len(sewa.baris) == 0
