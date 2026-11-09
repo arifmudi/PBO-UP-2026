@@ -1,51 +1,54 @@
-
 """Model domain: alat yang disewakan UPJA."""
+
+from typing import Final
+
+BATAS_TARIF_MAKSIMUM: Final[int] = 5_000_000
 
 
 class AlatTani:
-    """Satu unit alat pertanian beserta tarif hariannya."""
+    """Menyimpan informasi alat pertanian dan tarif sewanya."""
 
-    def __init__(self, kode: str, nama: str, tarif_harian: int) -> None:
-        if not kode.strip():
-            raise ValueError("kode alat tidak boleh kosong")
+    def __init__(
+        self,
+        kode: str,
+        nama: str,
+        tarif: int,
+    ) -> None:
+        if tarif <= 0:
+            raise ValueError(
+                f"tarif harus lebih dari nol, diterima {tarif}"
+            )
+        if tarif > BATAS_TARIF_MAKSIMUM:
+            raise ValueError(
+                f"tarif tidak wajar, diterima {tarif}"
+            )
 
         self._kode = kode
         self._nama = nama
-        self._tarif_harian = 0
-        self.tarif_harian = tarif_harian
+        self._tarif = tarif
 
+    # Kode alat merupakan identitas tetap sehingga hanya boleh dibaca.
     @property
     def kode(self) -> str:
-        """Kode alat. Tidak dapat diubah setelah alat dibuat."""
         return self._kode
 
+    # Nama alat hanya boleh dibaca melalui objek.
     @property
     def nama(self) -> str:
-        """Nama alat. Tidak dapat diubah setelah alat dibuat."""
         return self._nama
 
+    # Tarif alat dijaga agar tidak diubah langsung.
     @property
-    def tarif_harian(self) -> int:
-        """Tarif sewa per hari dalam rupiah."""
-        return self._tarif_harian
+    def tarif(self) -> int:
+        return self._tarif
 
-    @tarif_harian.setter
-    def tarif_harian(self, nilai: int) -> None:
-        if nilai <= 0:
-            raise ValueError(
-                f"tarif harus lebih dari nol, diterima {nilai}"
-            )
-        if nilai > 5_000_000:
-            raise ValueError(
-                f"tarif tidak wajar, diterima {nilai}"
-            )
-        self._tarif_harian = nilai
-
-    def biaya_sewa(self, jumlah_hari: int) -> int:
-        """Menghitung biaya sewa untuk sejumlah hari tertentu."""
-        return self._tarif_harian * jumlah_hari
+    def biaya_sewa(self, hari: int) -> int:
+        """Menghitung biaya sewa berdasarkan jumlah hari."""
+        if hari <= 0:
+            raise ValueError("lama sewa harus lebih dari nol hari")
+        return self._tarif * hari
 
     def keterangan(self) -> str:
-        """Mengembalikan keterangan alat untuk daftar sewa."""
-        rupiah = f"{self._tarif_harian:,}".replace(",", ".")
-        return f"[{self._kode}] {self._nama} — Rp{rupiah}/hari"
+        """Mengembalikan keterangan alat dan tarif sewanya."""
+        tarif_format = f"{self._tarif:,}".replace(",", ".")
+        return f"[{self._kode}] {self._nama} — Rp{tarif_format}/hari"
