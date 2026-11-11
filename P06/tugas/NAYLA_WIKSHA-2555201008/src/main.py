@@ -13,7 +13,7 @@ def demo_p06() -> None:
 
     traktor = Traktor("TR-02", "Traktor Kubota", 150_000, 12)
     pompa = PompaAir("PA-01", "Pompa Air Diesel", 100_000, 500)
-    perontok = Perontok("PR-01", "Mesin Perontok Padi", 200_000)
+    perontok = Perontok("PR-01", "Mesin Perontok Padi", 200_000, 900)
 
     daftar_alat = [traktor, pompa, perontok]
 

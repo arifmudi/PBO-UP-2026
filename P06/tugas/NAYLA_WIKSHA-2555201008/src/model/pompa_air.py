@@ -7,6 +7,7 @@ class PompaAir(AlatTani):
 
     HARGA_SOLAR_PER_LITER = 7_000
     LITER_PER_SERATUS_DEBIT = 3
+    JUMLAH_KOLOM_CSV = 4
 
     def __init__(
         self,
@@ -17,6 +18,28 @@ class PompaAir(AlatTani):
     ) -> None:
         super().__init__(kode, nama, tarif_harian)
         self._debit = debit
+
+    @classmethod
+    def dari_baris_csv(cls, baris: str) -> PompaAir:
+        """Membuat objek pompa air dari baris CSV."""
+        bagian = baris.split(cls.PEMISAH_BARIS)
+
+        if len(bagian) != cls.JUMLAH_KOLOM_CSV:
+            raise ValueError(
+                "Baris harus berisi kode, nama, tarif, dan debit"
+            )
+
+        kode, nama, tarif_teks, debit_teks = bagian
+
+        try:
+            tarif = int(tarif_teks)
+            debit = int(debit_teks)
+        except ValueError:
+            raise ValueError(
+                "Tarif dan debit harus berupa angka"
+            ) from None
+
+        return cls(kode.strip(), nama.strip(), tarif, debit)
 
     @property
     def debit(self) -> int:

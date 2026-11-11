@@ -44,14 +44,14 @@ def test_pompa_air_menghitung_biaya_sewa() -> None:
 
 
 def test_perontok_minimum_sewa_dua_hari() -> None:
-    alat = Perontok("PR-01", "Mesin Perontok", 200_000)
+    alat = Perontok("PR-01", "Mesin Perontok", 200_000, 900)
 
     assert alat.hari_ditagih(1) == 2
     assert alat.biaya_sewa(1) == 400_000
 
 
 def test_perontok_sewa_tiga_hari() -> None:
-    alat = Perontok("PR-01", "Mesin Perontok", 200_000)
+    alat = Perontok("PR-01", "Mesin Perontok", 200_000, 900)
 
     assert alat.biaya_sewa(3) == 600_000
 
@@ -98,3 +98,36 @@ def test_str_menampilkan_identitas_alat() -> None:
 
     assert "TR-01" in str(alat)
     assert "Traktor Kubota" in str(alat)
+
+
+def test_traktor_dibuat_dari_baris_csv() -> None:
+    alat = Traktor.dari_baris_csv(
+        "TR-02;Traktor John Deere;250000;20"
+    )
+
+    assert alat.kode == "TR-02"
+    assert alat.nama == "Traktor John Deere"
+    assert alat.tarif_harian == 250_000
+    assert alat.tenaga_kuda == 20
+
+
+def test_pompa_air_dibuat_dari_baris_csv() -> None:
+    alat = PompaAir.dari_baris_csv(
+        "PA-02;Pompa Air;150000;500"
+    )
+
+    assert alat.kode == "PA-02"
+    assert alat.nama == "Pompa Air"
+    assert alat.tarif_harian == 150_000
+    assert alat.debit == 500
+
+
+def test_perontok_dibuat_dari_baris_csv() -> None:
+    alat = Perontok.dari_baris_csv(
+        "PR-02;Mesin Perontok;200000;900"
+    )
+
+    assert alat.kode == "PR-02"
+    assert alat.nama == "Mesin Perontok"
+    assert alat.tarif_harian == 200_000
+    assert alat.kapasitas == 900
