@@ -14,7 +14,8 @@ Setiap tugas berjalan **1 minggu** sejak LKM dibagikan.
 | P03 — Enkapsulasi: property, setter, objek nilai `Alamat` | Kamis, 15 Oktober 2026 | Rabu, 21 Oktober 2026, pukul 23.59 WIB (sudah lewat) |
 | P04 — Milik kelas dan milik objek: konstanta, `classmethod`, `staticmethod` | Kamis, 22 Oktober 2026 | Rabu, 28 Oktober 2026, pukul 23.59 WIB (sudah lewat) |
 | P05 — Relasi antar kelas: asosiasi, agregasi, komposisi, diagram kelas | Kamis, 29 Oktober 2026 | Rabu, 4 November 2026, pukul 23.59 WIB (sudah lewat) |
-| P06 — Pewarisan: hierarki `AlatTani`, `super()`, `__str__`/`__repr__`/`__eq__`/`__hash__` | Kamis, 5 November 2026 | **Rabu, 11 November 2026, pukul 23.59 WIB** |
+| P06 — Pewarisan: hierarki `AlatTani`, `super()`, `__str__`/`__repr__`/`__eq__`/`__hash__` | Kamis, 5 November 2026 | Rabu, 11 November 2026, pukul 23.59 WIB (sudah lewat) |
+| P07 — Polimorfisme: pewarisan, duck typing, `match`, `singledispatch` | Kamis, 12 November 2026 | **Rabu, 18 November 2026, pukul 23.59 WIB** |
 
 **P04 berisi Tugas 1 (individu)** yang dinilai terpisah pada nilai akhir — kerjakan sendiri; kemiripan kode
 ditelusuri lewat riwayat commit. Rinciannya di `P04/materi/Panduan-Praktikum-P04.pdf` bagian 7: kelas `Kios`
@@ -42,6 +43,18 @@ Hapus `lupa_super.py` dan `eq_tanpa_hash.py` sebelum commit.
 Kampar, satu induk dan tiga turunan dengan pola penimpaan berbeda, induk menulis keempat method khusus dengan
 perbandingan berdasar atribut identitas, minimal dua belas uji dengan empat penolakan dan satu uji kunci dict. Tambahkan
 juga `dari_baris_csv` pada `PompaAir` dan `Perontok`. Tanda versi `p06-tugas2`; tenggat sama dengan P06.
+
+**P07** dikerjakan per orang di `P07/tugas/NAMA_LENGKAP-NIM/`, rinciannya di `P07/materi/Panduan-Praktikum-P07.pdf`:
+kelas `DaftarHarga` yang memproses berbagai `AlatTani` tanpa satu pun `isinstance`, `type()`, atau nama kelas turunan,
+penerjemah perintah konsol dengan `match` (minimal satu penjaga `if` dan satu `*_`), `format_nilai.py` dengan
+`singledispatch` untuk minimal tiga tipe bawaan, uji yang membuat jenis alat baru di dalam badan ujinya sendiri, minimal
+73 fungsi uji. Gerbang memakai profil `p07`; tanda versi `p07`. Hapus `rantai_if.py` dan `bebek_rapuh.py` sebelum commit.
+
+**P07 berisi Tugas 3 (individu)** yang dinilai terpisah (Panduan P07 bagian 7): kelas `PenyusunLaporan` untuk hierarki
+`Pegawai` dari Tugas 2 (rekap penghasilan, tertinggi, terendah, total; tanpa `isinstance`/`type()`/`match` atas nama
+kelasmu), satu uji yang membuat jenis pegawai keempat di dalam badan ujinya sendiri, penerjemah perintah konsol minimal
+lima cabang, satu fungsi `singledispatch` untuk tiga tipe bawaan, minimal lima belas uji dengan lima penolakan. Tanda
+versi `p07-tugas3`; tenggat sama dengan P07 (hari sebelum UTS).
 
 Keterlambatan dihitung dari **waktu Pull Request dibuat** (dicatat GitHub) dan dikurangi
 **5 poin per hari**. Commit di fork saja belum dihitung mengumpulkan — buat PR-nya sebelum tenggat.
@@ -81,6 +94,9 @@ P05/
 P06/
 ├── materi/                     Panduan, LKM, README, periksa_pbo.py, pyproject.toml, lupa_super.py, eq_tanpa_hash.py
 └── tugas/NAMA_LENGKAP-NIM/     src/, tests/, periksa_pbo.py, pyproject.toml, AI_USAGE.md, LKM-P06.pdf (Tugas 2 Pegawai ikut di sini)
+P07/
+├── materi/                     Panduan, LKM, README, periksa_pbo.py, pyproject.toml, rantai_if.py, bebek_rapuh.py
+└── tugas/NAMA_LENGKAP-NIM/     src/, tests/, periksa_pbo.py, pyproject.toml, AI_USAGE.md, LKM-P07.pdf (Tugas 3 ikut di sini)
 ```
 
 ## Cara mengumpulkan tugas
