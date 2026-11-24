@@ -60,7 +60,11 @@ def jalankan_konsol(daftar: DaftarHarga) -> None:
     print("Ketik 'keluar' untuk mengakhiri program.")
 
     while True:
-        masukan = input("> ").strip()
+        try:
+            masukan = input("> ").strip()
+        except EOFError:
+            print("\nInput interaktif tidak tersedia. Konsol dihentikan.")
+            break
 
         if masukan.lower() == "keluar":
             print("Program selesai.")
