@@ -1,9 +1,18 @@
-from .mahasiswa import Mahasiswa
+
+from .model.alat_tani import AlatTani
+from .model.petugas import Petugas
+from .model.penyewa import Penyewa
 
 
 def main() -> None:
-    mahasiswa = Mahasiswa("Budi Santoso", "2410123456", "Kuok")
-    print(mahasiswa.perkenalan())
+    penyewa = Penyewa("1401", "Budi", "Bangkinang")
+    petugas = Petugas("Siti", "PTG001", "081234567890", "Kuok")
+    alat = AlatTani("AT001", "Traktor", 150000)
+
+    print(penyewa.identitas())
+    print(petugas.informasi())
+    print(alat.keterangan())
+    print(f"Biaya sewa 2 hari: Rp{alat.biaya_sewa(2):,}".replace(",", "."))
 
 
 if __name__ == "__main__":
