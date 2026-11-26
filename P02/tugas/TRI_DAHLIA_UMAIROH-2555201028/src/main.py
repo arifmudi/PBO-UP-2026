@@ -1,7 +1,7 @@
 
 from .model.alat_tani import AlatTani
-from .model.petugas import Petugas
 from .model.penyewa import Penyewa
+from .model.petugas import Petugas
 
 
 def main() -> None:
