@@ -23,7 +23,11 @@ def main() -> None:
     print("Ketik 'keluar' untuk mengakhiri program.")
 
     while True:
-        perintah = input("\nPerintah: ").strip()
+        try:
+            perintah = input("\nPerintah: ").strip()
+        except EOFError:
+            print("\nProgram selesai.")
+            break
 
         if perintah.lower() == "keluar":
             print("Program selesai.")
