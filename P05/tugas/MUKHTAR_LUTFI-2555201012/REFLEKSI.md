@@ -1,0 +1,9 @@
+# Refleksi Pertemuan 05: Relasi Antar Kelas dan Diagram Kelas
+
+## Pembelajaran
+
+Praktikum Pertemuan 5 memberikan pemahaman praktis mengenai tiga jenis relasi objek dalam PBO beserta pengerjaannya di kode Python dan skema UML. Relasi asosiasi menghubungkan kelas Sewa dan Penyewa secara bebas, di mana penghapusan data transaksi Sewa tidak akan mempengaruhi atau menghapus data Penyewa. Pada relasi agregasi, kelas BarisSewa hanya menyimpan rujukan ke kelas AlatTani, sehingga data master alat tetap tersimpan aman meskipun transaksi dihapus. Sebaliknya, relasi komposisi berlaku pada hubungan Sewa dengan BarisSewa serta Penyewa dengan Alamat, di mana keberadaan objek anak sepenuhnya bergantung pada objek utamanya. Pelajaran penting lainnya adalah teknik pembekuan data riwayat melalui penyalinan tarif sewa saat transaksi dibuat, yang mencegah nilai nota lama berubah akibat penyesuaian harga alat di kemudian hari. Selain itu, keamanan enkapsulasi pada relasi komposisi dijaga dengan menyajikan daftar baris sewa dalam bentuk tuple agar data internal tidak bisa dimanipulasi dari luar fungsi resmi.
+
+## Kendala dan Solusi
+
+Dalam proses menyelesaikan kode dan pengujian p05, beberapa masalah teknis sempat muncul. Kendala awal terletak pada kegagalan uji pytest akibat ketidaksesuaian parameter kelas Penyewa dan Alamat, di mana posisi NIK tertukar dengan nama dan argumen Alamat belum lengkap. Solusinya adalah memperbaiki urutan argumen NIK 16 digit angka serta melengkapi parameter Dusun, Desa, dan Kecamatan pada Alamat. Masalah berikutnya adalah munculnya teguran Mypy dan Pytest terkait pembacaan variabel privat seperti kode alat, tarif saat sewa, serta nama penyewa. Hal ini ditangani dengan menambahkan decorator property dan membuat fungsi tambahan seperti baris nota dan jumlah alat. Terakhir, terdapat kesalahan struktur indentasi pada berkas uji pytest yang diselesaikan dengan merapikan spasi pada blok pengodean.
